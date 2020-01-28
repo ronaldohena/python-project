@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <h1>Add user</h1>
+    <form method="POST" action="/">
+      <input type="text" name="name" placeholder="Write user name..." />
+      <input type="text" name="birthday" placeholder="Write user birthday..." />
+      <input type="text" name="address" placeholder="Write user address..." />
+      <input type="submit" value="Add" />
+    </form>
+
+    <h1>Users</h1>
+    <table>
+      {% for user in users %}
+      <tr>
+        <td>
+          {{user.name}}
+        </td>
+        <td>
+          <form method="POST" action="./update" style="display: inline">
+            <input type="hidden" value="{{user.name}}" name="oldname" />
+            <input type="text" value="{{user.name}}" name="newname" />
+
+            <input type="hidden" value="{{user.birthday}}" name="oldbirthday" />
+            <input type="text" value="{{user.birthday}}" name="newbirthday" />
+
+            <input type="hidden" value="{{user.address}}" name="oldaddress" />
+            <input type="text" value="{{user.address}}" name="newaddress" />
+
+            <input type="submit" value="Update" />
+          </form>
+        </td>
+        <td>
+          <form method="POST" action="./delete" style="display: inline">
+            <input type="hidden" value="{{user.name}}" name="name" />
+            <input type="submit" value="Delete" />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
